@@ -5,7 +5,6 @@ import dbConnection from "./config/database";
 import ApiError from "./utils/apiError";
 import globalErrorHandling from "./middlewares/errorMiddleware";
 
-// Initialize environment variables
 dotenv.config({ path: ".env" });
 
 const PORT = process.env.PORT || 5000;

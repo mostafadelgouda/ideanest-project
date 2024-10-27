@@ -6,21 +6,19 @@ import {
   updateOrganization,
   deleteOrganization,
   grantAccess,
-} from "../services/organizationService"; // Adjust the import path
+} from "../services/organizationService"; 
 import {
   getOrganizationValidator,
   createOrganizationValidator,
   updateOrganizationValidator,
   deleteOrganizationValidator,
-} from "../utils/validators/organizationValidator"; // Adjust the import path
+} from "../utils/validators/organizationValidator"; 
 import authMiddleware from "../middlewares/authMiddleware";
 
 const router = express.Router();
 
-// Apply authentication middleware to all routes
 router.use(authMiddleware);
 
-// Define routes
 router
   .route("/")
   .get(getOrganizations)

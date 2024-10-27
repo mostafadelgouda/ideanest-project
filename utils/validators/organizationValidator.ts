@@ -1,7 +1,6 @@
 import { param, body } from "express-validator";
 import validatorMiddleware from "../../middlewares/validatorMiddleware";
 
-// Centralized error messages
 const messages = {
   invalidId: "Invalid organization id format",
   required: (field: string) => `${field} is required`,

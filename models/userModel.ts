@@ -1,7 +1,6 @@
 import { UUID } from "crypto";
 import mongoose, { Document, Schema } from "mongoose";
 
-// Define an interface for the user schema
 export interface IUser extends Document {
   name: string;
   email: string;
@@ -9,7 +8,6 @@ export interface IUser extends Document {
   _id: UUID;
 }
 
-// Define the user schema
 const userSchema: Schema<IUser> = new mongoose.Schema(
   {
     name: {
@@ -32,7 +30,6 @@ const userSchema: Schema<IUser> = new mongoose.Schema(
   { timestamps: true }
 );
 
-// Create and export the user model
 const UserModel = mongoose.model<IUser>("User", userSchema);
 
 export default UserModel;

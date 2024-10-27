@@ -1,7 +1,6 @@
 import { body } from "express-validator";
 import validatorMiddleware from "../../middlewares/validatorMiddleware";
 
-// Custom error messages for easier maintenance
 const messages = {
   required: (field: string) => `${field} is required`,
   invalidEmail: "Invalid email format",

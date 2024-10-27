@@ -2,7 +2,7 @@ import Organization from "../models/organizationModel";
 import slugify from "slugify";
 import asyncHandler from "express-async-handler";
 import ApiError from "../utils/apiError";
-import User from "../models/userModel"; // Assuming you have a User model
+import User from "../models/userModel"; 
 import { Request, Response, NextFunction } from "express";
 
 // Get all organizations for the current user
@@ -145,7 +145,7 @@ export const deleteOrganization = asyncHandler(
 export const grantAccess = asyncHandler(
   async (req: Request, res: Response, next: NextFunction) => {
     const orgId = req.params.id;
-    const { accessLevel, user_email: userEmail } = req.body; // Use destructuring for readability
+    const { access_level: accessLevel, user_email: userEmail } = req.body; // Use destructuring for readability
 
     // Find the organization
     const organization = await Organization.findById(orgId);
@@ -185,7 +185,7 @@ export const grantAccess = asyncHandler(
 
     // Add the new member to the organization
     organization.organizationMembers.push({
-      name: user.name, // Use the user's name from the database for accuracy
+      name: user.name, 
       email: userEmail,
       accessLevel,
     });

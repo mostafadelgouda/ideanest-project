@@ -1,6 +1,5 @@
 import mongoose, { Document, Schema } from "mongoose";
 
-// Define an interface for the organization schema
 interface IOrganizationMember {
   name: string;
   email: string;
@@ -14,7 +13,6 @@ interface IOrganization extends Document {
   organizationMembers: IOrganizationMember[];
 }
 
-// Define the organization schema
 const organizationSchema: Schema<IOrganization> = new mongoose.Schema(
   {
     name: {

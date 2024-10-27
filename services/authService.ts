@@ -1,25 +1,22 @@
-import User from "../models/userModel"; // Adjust the import path
+import User from "../models/userModel"; 
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import asyncHandler from "express-async-handler";
 import ApiError from "../utils/apiError";
 import { Request, Response, NextFunction } from "express";
 
-// Generate access token
 const generateAccessToken = (userId: string): string => {
   return jwt.sign({ id: userId }, process.env.JWT_SECRET as string, {
     expiresIn: "1d",
   });
 };
 
-// Generate refresh token
 const generateRefreshToken = (userId: string): string => {
   return jwt.sign({ id: userId }, process.env.JWT_REFRESH_SECRET as string, {
     expiresIn: process.env.JWT_REFRESH_EXPIRES_IN,
   });
 };
 
-// Register a new user
 export const registerUser = asyncHandler(async (req: Request, res: Response, next: NextFunction) => {
   const { name, email, password } = req.body;
 
@@ -42,15 +39,14 @@ export const registerUser = asyncHandler(async (req: Request, res: Response, nex
 
   res.status(201).json({
     message: "User registered successfully",
-    accessToken,
-    refreshToken,
-    id: user._id,
-    name: user.name,
-    email: user.email,
+    // access_token: accessToken,
+    // refresh_token: refreshToken,
+    // id: user._id,
+    // name: user.name,
+    // email: user.email,
   });
 });
 
-// Sign in a user
 export const signinUser = asyncHandler(async (req: Request, res: Response, next: NextFunction) => {
   const { email, password } = req.body;
 
@@ -69,20 +65,14 @@ export const signinUser = asyncHandler(async (req: Request, res: Response, next:
 
   res.status(200).json({
     message: "User logged in successfully",
-    accessToken,
-    refreshToken,
-    id: user._id,
-    name: user.name,
-    email: user.email,
+    access_token: accessToken,
+    refresh_token: refreshToken,
   });
 });
 
-// @desc Get user details
-// @route GET /api/v1/auth/me
-// @access Private
 export const getMe = asyncHandler(async (req: Request, res: Response, next: NextFunction) => {
-  const userId = req.user.id; // Assuming you have middleware to set req.user
-  const user = await User.findById(userId).select("-password"); // Exclude password from response
+  const userId = req.user.id; 
+  const user = await User.findById(userId).select("-password");
 
   if (!user) {
     return next(new ApiError("User not found", 404));
@@ -91,9 +81,6 @@ export const getMe = asyncHandler(async (req: Request, res: Response, next: Next
   res.status(200).json(user);
 });
 
-// @desc Refresh access token
-// @route POST /api/v1/auth/refresh-token
-// @access Public
 export const refreshToken = asyncHandler(async (req: Request, res: Response, next: NextFunction) => {
   const refreshToken = req.body.refresh_token;
 
