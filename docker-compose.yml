@@ -1,9 +1,12 @@
-version: '3'
+version: '3.8'
+
 services:
   app:
     build: .
-    ports:
-      - "8080:8080"
     volumes:
-      - .:/app
-    command: npm run start
+      - .:/usr/src/app  # Sync local code with the container
+      - /usr/src/app/node_modules  # Prevent node_modules from being overwritten
+    ports:
+      - "8080:8080"  # Map the container's port to your host
+    environment:
+      - NODE_ENV=development
