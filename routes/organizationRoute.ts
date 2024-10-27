@@ -1,22 +1,26 @@
-const express = require("express");
-const {
+import express, { Request, Response } from "express";
+import {
   getOrganizations,
   getOrganization,
   createOrganization,
   updateOrganization,
   deleteOrganization,
   grantAccess,
-} = require("../services/organizationService"); // Adjust the import path
-const {
+} from "../services/organizationService"; // Adjust the import path
+import {
   getOrganizationValidator,
   createOrganizationValidator,
   updateOrganizationValidator,
   deleteOrganizationValidator,
-} = require("../utils/validators/organizationValidator"); // Adjust the import path
-const authMiddleware = require("../middlewares/authMiddleware");
+} from "../utils/validators/organizationValidator"; // Adjust the import path
+import authMiddleware from "../middlewares/authMiddleware";
+
 const router = express.Router();
 
+// Apply authentication middleware to all routes
 router.use(authMiddleware);
+
+// Define routes
 router
   .route("/")
   .get(getOrganizations)
@@ -27,6 +31,7 @@ router
   .get(getOrganizationValidator, getOrganization)
   .put(updateOrganizationValidator, updateOrganization)
   .delete(deleteOrganizationValidator, deleteOrganization);
+
 router.post("/:id/invite", grantAccess);
 
-module.exports = router;
+export default router;

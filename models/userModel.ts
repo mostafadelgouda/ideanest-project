@@ -1,6 +1,16 @@
-const mongoose = require("mongoose");
+import { UUID } from "crypto";
+import mongoose, { Document, Schema } from "mongoose";
 
-const userSchema = new mongoose.Schema(
+// Define an interface for the user schema
+export interface IUser extends Document {
+  name: string;
+  email: string;
+  password: string;
+  _id: UUID;
+}
+
+// Define the user schema
+const userSchema: Schema<IUser> = new mongoose.Schema(
   {
     name: {
       type: String,
@@ -22,6 +32,7 @@ const userSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-const UserModel = mongoose.model("User", userSchema);
+// Create and export the user model
+const UserModel = mongoose.model<IUser>("User", userSchema);
 
-module.exports = UserModel;
+export default UserModel;

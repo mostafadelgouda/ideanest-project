@@ -1,14 +1,14 @@
-const express = require("express");
-const {
+import express, { Request, Response } from "express";
+import {
   registerUser,
   signinUser,
   getMe,
   refreshToken,
-} = require("../services/authService"); // Adjust the import path
-const {
+} from "../services/authService"; // Adjust the import path
+import {
   registerValidator,
   signinValidator,
-} = require("../utils/validators/authValidator"); // Adjust the import path
+} from "../utils/validators/authValidator"; // Adjust the import path
 
 const router = express.Router();
 
@@ -17,7 +17,7 @@ const router = express.Router();
 // @access Public
 router.post("/register", registerValidator, registerUser);
 
-// @desc signin a user
+// @desc Sign in a user
 // @route POST /api/v1/auth/signin
 // @access Public
 router.post("/signin", signinValidator, signinUser);
@@ -27,6 +27,9 @@ router.post("/signin", signinValidator, signinUser);
 // @access Private
 router.get("/me", getMe); // Assuming you have middleware to authenticate the user
 
+// @desc Refresh token
+// @route POST /api/v1/auth/refresh-token
+// @access Public
 router.post("/refresh-token", refreshToken);
 
-module.exports = router;
+export default router;
