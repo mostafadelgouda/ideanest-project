@@ -1,3 +1,5 @@
+Invite User to Organization
+
 # Ideanest Project
 
 ## Description
@@ -62,7 +64,7 @@ The application is set up to use `nodemon` for hot-reloading during development.
 
 ### Docker Commands
 
-- **Build the Docker image:** 
+- **Build the Docker image:**
 
   ```bash
   docker-compose build
@@ -92,17 +94,11 @@ The application is set up to use `nodemon` for hot-reloading during development.
 ### Organization Management
 
 - **GET /api/v1/organizations/:id** - Get organization details
+- **GET /api/v1/organizations/** - Get organizations details
 - **POST /api/v1/organizations** - Create a new organization
+- **POST/api/v1/organizations/:id/invite** - Invite user to organization
 - **PUT /api/v1/organizations/:id** - Update an existing organization
 - **DELETE /api/v1/organizations/:id** - Delete an organization
-
-## Contributing
-
-Contributions are welcome! Please open an issue or submit a pull request.
-
-## License
-
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
 ## Author
 
