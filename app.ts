@@ -39,7 +39,7 @@ app.get("/", (req: Request, res: Response) => {
         <p>To use this API, here are the available paths:</p>
         <ul>
           <li><strong>/api/v1/organizations</strong> - Manage organizations</li>
-          <li><strong>/api/v1/auth</strong> - Authentication routes</li>
+          <li><strong>/api/v1/</strong> - Authentication routes</li>
           <!-- Add other paths as needed -->
         </ul>
       </body>
