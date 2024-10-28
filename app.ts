@@ -28,6 +28,24 @@ if (MODE === "development") {
 app.use(express.json());
 
 // Routes
+app.get("/", (req: Request, res: Response) => {
+  res.send(`
+    <html>
+      <head>
+        <title>API Documentation</title>
+      </head>
+      <body>
+        <h1>Welcome to the API</h1>
+        <p>To use this API, here are the available paths:</p>
+        <ul>
+          <li><strong>/api/v1/organizations</strong> - Manage organizations</li>
+          <li><strong>/api/v1/auth</strong> - Authentication routes</li>
+          <!-- Add other paths as needed -->
+        </ul>
+      </body>
+    </html>
+  `);
+});
 app.use("/api/v1/organizations", organizationRoute);
 app.use("/api/v1/", authRoute);
 
