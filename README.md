@@ -96,7 +96,7 @@ The application is set up to use `nodemon` for hot-reloading during development.
 
 ## Project Links
 
-- **Deployment Link** : [https://ideanest-project-iota.vercel.app/]()
+- **Deployment Link** : [https://ideanest-project-iota.vercel.app/](https://ideanest-project-iota.vercel.app/)
 - **Documentation** : [https://documenter.getpostman.com/view/33291356/2sAY4skQJj](https://documenter.getpostman.com/view/33291356/2sAY4skQJj)
 
 ## Author
