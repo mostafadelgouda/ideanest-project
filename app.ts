@@ -1,21 +1,20 @@
-import express, { Request, Response, NextFunction } from "express";
-import dotenv from "dotenv";
-import morgan from "morgan";
-import dbConnection from "./config/database";
-import ApiError from "./utils/apiError";
-import globalErrorHandling from "./middlewares/errorMiddleware";
+const express = require("express");
+const dotenv = require("dotenv");
+const morgan = require("morgan");
+const dbConnection = require("./config/database");
+const ApiError = require("./utils/apiError");
+const globalErrorHandling = require("./middlewares/errorMiddleware");
 
 dotenv.config({ path: ".env" });
-
-const PORT = process.env.PORT || 5000;
-const MODE = process.env.MODE || "development";
+const PORT = process.env.PORT;
+const MODE = process.env.MODE;
 
 // Database connection
 dbConnection();
 
 // Route files
-import organizationRoute from "./routes/organizationRoute";
-import authRoute from "./routes/authRoute";
+const organizationRoute = require("./routes/organizationRoute");
+const authRoute = require("./routes/authRoute");
 
 const app = express();
 
@@ -24,7 +23,6 @@ if (MODE === "development") {
   console.log(`Mode: ${MODE}`);
 }
 
-// Middleware to parse incoming JSON requests
 app.use(express.json());
 
 // Routes
@@ -32,7 +30,7 @@ app.use("/api/v1/organizations", organizationRoute);
 app.use("/api/v1/", authRoute);
 
 // Handle undefined routes
-app.all("*", (req: Request, res: Response, next: NextFunction) => {
+app.all("*", (req, res, next) => {
   next(new ApiError(`Can't find this route: ${req.originalUrl}`, 400));
 });
 
@@ -40,14 +38,14 @@ app.all("*", (req: Request, res: Response, next: NextFunction) => {
 app.use(globalErrorHandling);
 
 const server = app.listen(PORT, () => {
-  console.log(`App running on port: ${PORT}`);
+  console.log("App running on port:", PORT);
 });
 
 // Handle unhandled promise rejections
-process.on("unhandledRejection", (err: any) => {
-  console.error(`unhandledRejection Error: ${err.name} | ${err.message}`);
+process.on("unhandledRejection", (err: Error) => {
+  console.log(`unhandledRejection Error: ${err.name} | ${err.message}`);
   server.close(() => {
     console.log("Shutting down...");
-    process.exit(1);
+    process.exit(0);
   });
 });
