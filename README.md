@@ -1,5 +1,3 @@
-Invite User to Organization
-
 # Ideanest Project
 
 ## Description
@@ -28,7 +26,7 @@ This project is a TypeScript-based Node.js application that serves as a backend 
 
 ### Prerequisites
 
-- [Node.js](https://nodejs.org/en/) (version 18 or later)
+- [Node.js](https://nodejs.org/en/) (version 20 or later)
 - [Docker](https://www.docker.com/get-started) and [Docker Compose](https://docs.docker.com/compose/)
 
 ### Installation
@@ -39,7 +37,6 @@ This project is a TypeScript-based Node.js application that serves as a backend 
    git clone <repository-url>
    cd ideanest-project
    ```
-
 2. Install dependencies:
 
    ```bash
@@ -55,7 +52,6 @@ You can run the application in a development environment using Docker:
    ```bash
    docker-compose up --build
    ```
-
 2. Access the application at `http://localhost:8080`.
 
 ### Development
@@ -69,13 +65,11 @@ The application is set up to use `nodemon` for hot-reloading during development.
   ```bash
   docker-compose build
   ```
-
 - **Run the Docker container:**
 
   ```bash
   docker-compose up
   ```
-
 - **Stop the Docker container:**
 
   ```bash
@@ -99,6 +93,11 @@ The application is set up to use `nodemon` for hot-reloading during development.
 - **POST/api/v1/organizations/:id/invite** - Invite user to organization
 - **PUT /api/v1/organizations/:id** - Update an existing organization
 - **DELETE /api/v1/organizations/:id** - Delete an organization
+
+## Project Links
+
+- **GitHub Repository** : [https://ideanest-project-iota.vercel.app/]()
+- **Documentation** : [https://documenter.getpostman.com/view/33291356/2sAY4skQJj]()
 
 ## Author
 
