@@ -3,10 +3,10 @@
   "version": "1.0.0",
   "main": "dist/app.js",
   "scripts": {
-    "start": "node dist/app.js",
-    "dev": "nodemon dist/app.js",
+    "watch": "tsc --watch",
+    "dev": "ts-node-dev app.ts",
     "build": "tsc",
-    "watch": "tsc --watch"
+    "start": "node dist/app.js"
   },
   "author": "Mostafa Adel",
   "license": "ISC",
